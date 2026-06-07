@@ -1,2 +1,2 @@
 # mini-project
-Openlib :- Libray manage system
+Openlib :- Libray management system
