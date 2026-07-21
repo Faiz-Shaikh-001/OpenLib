@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Details</title>
+    <link rel="stylesheet" href="{% static "css/book-detail.css" %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="book-details">
+        <a href="/userpage/user"><div class="bx bx-arrow-back"></div></a>
+        <h2 class="book-title">
+          Book title
+          <div class="rectangle"></div>
+        </h2>
+        <img
+          class="book-image"
+          src="https://books.google.co.in/books/content?id=bYT8hyBTSNwC&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE730tipbefXbU3HPWDkkxjg0QGGmH6lP9Z022S-n0htYsifFxxKxuuUF8uNgqGm1YfLL2zF7IAINvW7gn5XCMLuBYLJFSnZyteuIELA4fFCT9ZPuoONzhJ_v17hfKrMLQoI9wEc4"
+          alt="Book image"
+        />
+        <h3>Author: Author Name</h3>
+        <h3>Language:</h3>
+        <h3>Pages:</h3>
+        <h3>Published date:</h3>
+        <h3>Summary:</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          quidem harum, ipsa aut unde dolorem maiores suscipit consequuntur
+          velit ducimus, dicta tempore vero. Provident explicabo fuga mollitia
+          quas, error et ipsam rerum! Enim, in eaque?
+        </p>
+        <div class="rating">
+          <h4>
+            Have you read this book? If yes help other users save time by rating
+            it:
+          </h4>
+          <div id="stars" class="stars">
+            <span class="bx bx-star" data-rating="1"></span>
+            <span class="bx bx-star" data-rating="2"></span>
+            <span class="bx bx-star" data-rating="3"></span>
+            <span class="bx bx-star" data-rating="4"></span>
+            <span class="bx bx-star" data-rating="5"></span>
+          </div>
+        </div>
+        <div id="user-rating">
+          <p>
+            Book Rating: &nbsp;&nbsp;<span id="book-rating-value">N/A</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="{% static "js/book-details.js" %}"></script>
+  </body>
+</html>

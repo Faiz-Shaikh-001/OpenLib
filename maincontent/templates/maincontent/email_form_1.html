@@ -1,0 +1,8 @@
+<form class="email-submit" id="data-form-1" method="post" action="{% url 'about' %}">
+    {% csrf_token %}
+    <input type="hidden" name="form_id" value="form1">
+    <input type="email" placeholder="Enter your email..." name="email" id="{{ form.email_address.id }}" required>
+    <button type="submit">
+      Sign Up
+    </button>
+</form>

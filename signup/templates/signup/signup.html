@@ -1,0 +1,119 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/signup.css" %}"  type="text/css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <div id="container" class="container">
+      <!-- FORM SECTION -->
+      <div class="row">
+        <!-- SIGN UP -->
+        <div class="col align-items-center flex-col sign-up">
+          <div class="form-wrapper align-items-center">
+            <form class="form sign-up" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="form_type" value="signup">
+              <div class="input-group">
+                <i class="bx bx-user"></i>
+                <select name="role" class="form-control" required>
+                  {% for value, label in form.role.field.choices %}
+                      <option value="{{ value }}" {% if value == '' %}disabled="disabled" selected="selected"{% endif %}>{{ label }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="input-group">
+                <i class="bx bxs-user"></i>
+                {{ form.username }}
+              </div>
+              <div class="input-group">
+                <i class="bx bx-mail-send"></i>
+                {{ form.email }}
+              </div>
+              <div class="input-group">
+                <i class="bx bxs-lock-alt"></i>
+                {{ form.password }}
+              </div>
+              <div class="input-group">
+                <i class="bx bxs-lock-alt"></i>
+                {{ form.confirm_password }}
+              </div>
+              <button>Sign up</button>
+              <p>
+                <span> Already have an account? </span>
+                <b onclick="toggle()" class="pointer"> Sign in here </b>
+              </p>
+            </form>
+          </div>
+        </div>
+        <!-- END SIGN UP -->
+        <!-- SIGN IN -->
+        <div class="col align-items-center flex-col sign-in">
+          <div class="form-wrapper align-items-center">
+            <form class="form sign-in" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="form_type" value="signin">
+              <div class="input-group">
+                <i class="bx bx-user"></i>
+                <select name="role" class="form-control" required>
+                  {% for value, label in form.role.field.choices %}
+                      <option value="{{ value }}" {% if value == '' %}disabled="disabled" selected="selected"{% endif %}>{{ label }}</option>
+                  {% endfor %}
+              </select>
+              </div>
+              <div class="input-group">
+                <i class="bx bxs-user"></i>
+                {{ form.username }}
+              </div>
+              <div class="input-group">
+                <i class="bx bxs-lock-alt"></i>
+                {{ form.password }}
+              </div>
+              <button type="submit">Sign in</button>
+              <p>
+                <b> Forgot password? </b>
+              </p>
+              <p>
+                <span> Don't have an account? </span>
+                <b onclick="toggle()" class="pointer"> Sign up here </b>
+              </p>
+            </form>
+          </div>
+          <div class="form-wrapper"></div>
+        </div>
+        
+        <!-- END SIGN IN -->
+      </div>
+      <!-- END FORM SECTION -->
+      <!-- CONTENT SECTION -->
+      <div class="row content-row">
+        <!-- SIGN IN CONTENT -->
+        <div class="col align-items-center flex-col">
+          <div class="text sign-in">
+            <h2>Welcome</h2>
+          </div>
+          <div class="img sign-in"></div>
+        </div>
+        <!-- END SIGN IN CONTENT -->
+        <!-- SIGN UP CONTENT -->
+        <div class="col align-items-center flex-col">
+          <div class="img sign-up"></div>
+          <div class="text sign-up">
+            <h2>Join with us</h2>
+          </div>
+        </div>
+        <!-- END SIGN UP CONTENT -->
+      </div>
+      <!-- END CONTENT SECTION -->
+    </div>
+    <script src="{% static "js/signup.js" %}" type="text/javascript"></script>
+  </body>
+</html>

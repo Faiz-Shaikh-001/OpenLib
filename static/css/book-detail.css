@@ -1,0 +1,93 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+* {
+    font-family: 'Saira Condensed', 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #dadada;
+}
+
+#main {
+    width: 100%;
+}
+
+#book-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 2rem;
+    background-color: #f1f1f1;
+    padding: 2rem;
+    min-height: 90vh;
+    max-height: fit-content;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 20px 0px #000;
+}
+
+.book-image {
+    box-shadow: 10px 10px 20px 0px #000000a8;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+}
+
+.book-title {
+    font-size: clamp(30px, 5vw, 4rem);
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    color: #f00;
+}
+
+.rectangle {
+    width: clamp(30px, 100%, 20rem);
+    background-color: #00000059;
+    height: 5px;
+    position: absolute;
+    bottom: 1%;
+}
+
+.rating {
+    display: flex;
+    margin: 1% 0;
+}
+
+.stars {
+    margin-left: 1rem;
+}
+
+.bx-star {
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    transition: .5s ease;
+    cursor: pointer;
+}
+
+.bx-arrow-back {
+    font-size: 50px;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    color: #818181a8;
+}
+
+.bx-arrow-back:hover {
+    color: #000;
+    cursor: pointer;
+}

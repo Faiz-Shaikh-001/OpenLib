@@ -1,0 +1,27 @@
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment variables & secrets
+.env
+Openlib/info.py
+
+# Database
+*.sqlite3
+
+# Static files
+staticfiles/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.swp

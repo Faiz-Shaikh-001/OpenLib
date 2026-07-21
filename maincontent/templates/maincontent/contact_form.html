@@ -1,0 +1,7 @@
+<form method="post" class="form" action="{% url "contact" %}">
+    {% csrf_token %}
+    <input type="text" name="username" id="username" placeholder="Enter your Name">
+    <input type="email" name="email" id="email" placeholder="Enter a valid email address">
+    <textarea name="message" id="message" cols="30" rows="5" placeholder="Enter your message"></textarea>
+    <button id="btn">Submit</button>
+</form>

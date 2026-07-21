@@ -1,0 +1,457 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenLib - About Us</title>
+
+  <link rel="stylesheet" href="{% static "css/about.css" %}" type="text/css"/>
+  <script src="https://kit.fontawesome.com/f654dd9465.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div id="page1">
+      <header>
+        <div id="nav">
+          <div id="navbar">
+            <div>
+              <a href="/home" id="logo">
+                <svg viewBox="0 0 75 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M46.919 6.25491L38.086 12.5244V32.6368C38.086 45.1758 38.1446 52.7344 38.2178 52.7051C38.3057 52.6905 41.9092 49.9219 46.2305 46.5821C50.5518 43.2422 54.6973 40.1221 55.4298 39.668C56.1622 39.2139 56.8799 38.6866 57.0264 38.5108C57.2608 38.2178 57.2755 37.1192 57.2755 20.0391V1.88967L56.9678 1.27444C56.6163 0.58596 56.1329 2.28882e-05 55.8985 2.28882e-05C55.8106 2.28882e-05 51.7676 2.81252 46.919 6.25491Z"
+                    fill="#FAFAFF" />
+                  <path
+                    d="M9.05268 8.4229C7.20698 8.62798 6.63569 8.84771 6.0937 9.56548L5.78608 9.97564L5.74213 27.7295C5.71284 40.1075 5.74213 45.6446 5.85932 46.0254C5.96186 46.3624 6.21088 46.7286 6.5478 46.9776L7.07514 47.3878L11.7773 47.4756C16.4648 47.5635 16.4941 47.5635 18.9697 48.0909C24.7705 49.3213 27.6562 50.2442 31.6406 52.1485C34.1162 53.335 35.3906 53.9063 35.5371 53.9063C35.5664 53.9063 35.5957 44.7217 35.5957 33.501V13.0958L34.6875 12.9053C34.1894 12.8028 32.3437 12.2022 30.6005 11.5577C25.2392 9.60942 22.3828 8.877 18.457 8.4229C16.2451 8.15923 11.455 8.15923 9.05268 8.4229Z"
+                    fill="#FAFAFF" />
+                  <path
+                    d="M59.8829 23.3789C59.8389 37.6758 59.8243 38.6279 59.5753 39.1845C59.1944 40.0342 58.6964 40.5029 57.0997 41.5429C55.254 42.7441 44.2823 51.0937 43.213 52.1045C43.0958 52.207 43.7256 51.9726 44.6046 51.5478C47.3438 50.2588 50.962 49.1748 56.3965 48.0176C58.4473 47.5781 58.6817 47.5488 63.2081 47.4756C67.8516 47.3877 67.8956 47.3877 68.3936 47.0361C69.3458 46.3623 69.2872 47.4609 69.2872 27.9345V10.1513L68.9503 9.66793C68.2471 8.61325 67.3243 8.40817 62.7393 8.24704L59.9268 8.15915L59.8829 23.3789Z"
+                    fill="#FAFAFF" />
+                  <path
+                    d="M0.644531 13.3594C0.46875 13.4327 0.249023 13.667 0.161133 13.8575C0.0439453 14.1211 0 19.834 0 34.2188V54.2286L0.424805 54.6534L0.84961 55.0782L16.3623 55.0635L31.8604 55.0489L29.9561 54.1114C27.085 52.6905 23.7305 51.6505 18.3106 50.5079C16.2598 50.0684 16.0254 50.0391 11.4258 49.9659L6.66504 49.878L5.81543 49.4532C4.83399 48.9551 4.05762 48.1495 3.60352 47.1827L3.2959 46.5088L3.25195 29.8389L3.22266 13.1836L2.08008 13.1983C1.46484 13.1983 0.805664 13.2715 0.644531 13.3594Z"
+                    fill="#FAFAFF" />
+                  <path
+                    d="M71.7481 29.8389L71.7042 46.5088L71.294 47.3438C70.8253 48.296 69.9757 49.1163 69.0089 49.5704C68.379 49.8487 68.0128 49.878 63.5743 49.9659C58.9454 50.0538 58.7549 50.0684 56.6163 50.5225C51.2403 51.6651 47.8858 52.7198 45.0147 54.126L43.1397 55.0489L58.6378 55.0635L74.1505 55.0782L74.5753 54.6534L75.0001 54.2286V34.2188C75.0001 19.878 74.9561 14.1211 74.8389 13.8721C74.6046 13.3594 74.1065 13.1836 72.876 13.1836H71.7774L71.7481 29.8389Z"
+                    fill="#FAFAFF" />
+                </svg>
+                <h1 id="logo-title-1">Open</h1>
+                <h1 id="logo-title-2">Lib</h1>
+              </a>
+            </div>
+            <div id="nav-items">
+              <h3><a href="/home">Home</a></h3>
+              <h3><a href="/about">About</a></h3>
+              <h3><a href="/contact">Contact</a></h3>
+              <a href="/signup/"><button class="btn-hover">
+                Sign Up
+              </button></a>
+            </div>
+
+            <!-- Hamburger menu button -->
+            <div class="d-none">
+              <span id="mobile-menu-button" onclick="openNav()">&#9776;</span>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div id="mobile-menu">
+        <div id="close-btn">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+        <a class="mobile-menu-items" href="/home">Home</a>
+        <a class="mobile-menu-items" href="/about">About</a>
+        <a class="mobile-menu-items" href="/contact">Contact</a>
+        <a class="mobile-menu-items" href="/signup/">Sign Up</a>
+      </div>
+      <div class="container">
+        <div class="left-container">
+          <h1>More Than a System: We're Your Library's Best Friend</h1>
+
+          <h3>
+            More than just a system, we are your library's trusted ally,
+            dedicated to simplifying management, enhancing accessibility, and
+            fostering a culture of knowledge.
+          </h3>
+
+          {% include "maincontent/email_form_1.html" %}
+
+          <pre><img src="{% static "images/about-page-assets/stars.png" %}" alt="review stars">   |   Streamline management   |   User-friendly interface </pre>
+        </div>
+        <div class="right-container">
+          <img src="{% static "images/about-page-assets/background-squares.png" %}" class="background-squares" />
+          <img src="{% static "images/about-page-assets/img-2@2x.png" %}" class="hero-image" />
+        </div>
+      </div>
+    </div>
+
+    <div class="seperator"></div>
+
+    <div id="page2">
+      <div class="page2-title">
+        <h1 class="title">Features</h1>
+      </div>
+
+      <div id="user-title">
+        <div class="red-rectangle"></div>
+        <h1>User</h1>
+        <svg width="85vw" height="25vh" viewBox="0 0 1170 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2 74.4309L7.02717 71.3797C48.6414 46.1221 100.854 46.1221 142.468 71.3797L147.495 74.4309L152.522 77.4822C194.137 102.74 246.349 102.74 287.963 77.4822L292.99 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 59.2925L7.02717 56.2413C48.6414 30.9837 100.854 30.9837 142.468 56.2413L147.495 59.2925L152.522 62.3437C194.137 87.6014 246.349 87.6014 287.963 62.3437L292.99 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 44.1538L7.02717 41.1026C48.6414 15.845 100.854 15.845 142.468 41.1026L147.495 44.1538L152.522 47.2051C194.137 72.4627 246.349 72.4627 287.963 47.2051L292.99 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 89.5696L7.02717 86.5184C48.6414 61.2608 100.854 61.2608 142.468 86.5184L147.495 89.5696L152.522 92.6208C194.137 117.878 246.349 117.878 287.963 92.6208L292.99 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 104.708L7.02717 101.657C48.6414 76.3989 100.854 76.3989 142.468 101.657L147.495 104.708L152.522 107.759C194.137 133.017 246.349 133.017 287.963 107.759L292.99 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 119.846L7.02717 116.795C48.6414 91.5371 100.854 91.5371 142.468 116.795L147.495 119.846L152.522 122.897C194.137 148.155 246.349 148.155 287.963 122.897L292.99 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 74.4309L298.698 71.3797C340.312 46.1221 392.524 46.1221 434.138 71.3797L439.165 74.4309L444.193 77.4822C485.807 102.74 538.019 102.74 579.633 77.4822L584.66 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 59.2925L298.698 56.2413C340.312 30.9837 392.524 30.9837 434.138 56.2413L439.165 59.2925L444.193 62.3437C485.807 87.6014 538.019 87.6014 579.633 62.3437L584.66 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 44.1538L298.698 41.1026C340.312 15.845 392.524 15.845 434.138 41.1026L439.165 44.1538L444.193 47.2051C485.807 72.4627 538.019 72.4627 579.633 47.2051L584.66 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 89.5696L298.698 86.5184C340.312 61.2608 392.524 61.2608 434.138 86.5184L439.165 89.5696L444.193 92.6208C485.807 117.878 538.019 117.878 579.633 92.6208L584.66 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 104.708L298.698 101.657C340.312 76.3989 392.524 76.3989 434.138 101.657L439.165 104.708L444.193 107.759C485.807 133.017 538.019 133.017 579.633 107.759L584.66 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 119.846L298.698 116.795C340.312 91.5371 392.524 91.5371 434.138 116.795L439.165 119.846L444.193 122.897C485.807 148.155 538.019 148.155 579.633 122.897L584.66 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 74.4309L590.367 71.3797C631.981 46.1221 684.193 46.1221 725.808 71.3797L730.835 74.4309L735.862 77.4822C777.476 102.74 829.689 102.74 871.303 77.4822L876.33 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 59.2925L590.367 56.2413C631.981 30.9837 684.193 30.9837 725.808 56.2413L730.835 59.2925L735.862 62.3437C777.476 87.6014 829.689 87.6014 871.303 62.3437L876.33 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 44.1538L590.367 41.1026C631.981 15.845 684.193 15.845 725.808 41.1026L730.835 44.1538L735.862 47.2051C777.476 72.4627 829.689 72.4627 871.303 47.2051L876.33 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 89.5696L590.367 86.5184C631.981 61.2608 684.193 61.2608 725.808 86.5184L730.835 89.5696L735.862 92.6208C777.476 117.878 829.689 117.878 871.303 92.6208L876.33 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 104.708L590.367 101.657C631.981 76.3989 684.193 76.3989 725.808 101.657L730.835 104.708L735.862 107.759C777.476 133.017 829.689 133.017 871.303 107.759L876.33 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 119.846L590.367 116.795C631.981 91.5371 684.193 91.5371 725.808 116.795L730.835 119.846L735.862 122.897C777.476 148.155 829.689 148.155 871.303 122.897L876.33 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 74.4309L882.037 71.3797C923.651 46.1221 975.863 46.1221 1017.48 71.3797L1022.5 74.4309L1027.53 77.4822C1069.15 102.74 1121.36 102.74 1162.97 77.4822L1168 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 59.2925L882.037 56.2413C923.651 30.9837 975.863 30.9837 1017.48 56.2413L1022.5 59.2925L1027.53 62.3437C1069.15 87.6014 1121.36 87.6014 1162.97 62.3437L1168 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 44.1538L882.037 41.1026C923.651 15.845 975.863 15.845 1017.48 41.1026L1022.5 44.1538L1027.53 47.2051C1069.15 72.4627 1121.36 72.4627 1162.97 47.2051L1168 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 89.5696L882.037 86.5184C923.651 61.2608 975.863 61.2608 1017.48 86.5184L1022.5 89.5696L1027.53 92.6208C1069.15 117.878 1121.36 117.878 1162.97 92.6208L1168 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 104.708L882.037 101.657C923.651 76.3989 975.863 76.3989 1017.48 101.657L1022.5 104.708L1027.53 107.759C1069.15 133.017 1121.36 133.017 1162.97 107.759L1168 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 119.846L882.037 116.795C923.651 91.5371 975.863 91.5371 1017.48 116.795L1022.5 119.846L1027.53 122.897C1069.15 148.155 1121.36 148.155 1162.97 122.897L1168 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <div class="container">
+        <img src="{% static "images/about-page-assets/photo1.png" %}" alt="photo no.1" class="photo" />
+        <div class="text-1">
+          <div class="title">
+            <div class="red-rectangle"></div>
+            <h2>Browse Books from the Comfort of Your Home</h2>
+          </div>
+          <h3>
+            Explore our extensive library collection online, allowing you to
+            discover and reserve books from the comfort of your home. Dive
+            into a world of literature with just a few clicks.
+          </h3>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="text-2">
+          <div class="title-2">
+            <div id="red-rectangle"></div>
+            <h2>Get Book Summaries and Reviews Before You Borrow</h2>
+          </div>
+          <h3>
+            Make informed reading choices with access to book summaries and
+            reviews. Our platform empowers you to preview the content and
+            insights others have shared about the books in our catalog.
+          </h3>
+        </div>
+        <img src="{% static "images/about-page-assets/photo2.png" %}" alt="photo no.2" class="photo" />
+      </div>
+
+      <div class="container">
+        <img src="{% static "images/about-page-assets/photo3.png" %}" alt="photo no.3" class="photo" />
+        <div class="text-1">
+          <div class="title">
+            <div class="red-rectangle"></div>
+            <h2>Know Which Books Are Worth Your Time with User Ratings</h2>
+          </div>
+          <h3>
+            Trust the wisdom of our community. User ratings and reviews help
+            you identify the most compelling and highly regarded books in our
+            collection, ensuring your reading experience is top-notch.
+          </h3>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="text-2">
+          <div class="title-2">
+            <div id="red-rectangle"></div>
+            <h2>Stay on Top of Late Fees with Pending Fee Information</h2>
+          </div>
+          <h3>
+            Manage your library account with ease. We provide clear
+            information on any pending late fees, so you can keep your account
+            in good standing and avoid unexpected charges.
+          </h3>
+        </div>
+        <img src="{% static "images/about-page-assets/photo4.png" %}" alt="photo no.4" class="photo" />
+      </div>
+
+      <div class="container">
+        <img src="{% static "images/about-page-assets/photo5.png" %}" alt="photo no.5" class="photo" />
+        <div class="text-1">
+          <div class="title">
+            <div class="red-rectangle"></div>
+            <h2>
+              Never Miss a Due Date – Receive 2-Day Prior Return Notifications
+            </h2>
+          </div>
+          <h3>
+            Say goodbye to overdue fines. Our notification system reminds you
+            of upcoming due dates, giving you a two-day window to return
+            borrowed materials promptly.
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="page3">
+      <div id="user-title">
+        <div class="red-rectangle"></div>
+        <h1>Admin</h1>
+        <svg width="85vw" height="25vh" viewBox="0 0 1170 164" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2 74.4309L7.02717 71.3797C48.6414 46.1221 100.854 46.1221 142.468 71.3797L147.495 74.4309L152.522 77.4822C194.137 102.74 246.349 102.74 287.963 77.4822L292.99 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 59.2925L7.02717 56.2413C48.6414 30.9837 100.854 30.9837 142.468 56.2413L147.495 59.2925L152.522 62.3437C194.137 87.6014 246.349 87.6014 287.963 62.3437L292.99 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 44.1538L7.02717 41.1026C48.6414 15.845 100.854 15.845 142.468 41.1026L147.495 44.1538L152.522 47.2051C194.137 72.4627 246.349 72.4627 287.963 47.2051L292.99 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 89.5696L7.02717 86.5184C48.6414 61.2608 100.854 61.2608 142.468 86.5184L147.495 89.5696L152.522 92.6208C194.137 117.878 246.349 117.878 287.963 92.6208L292.99 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 104.708L7.02717 101.657C48.6414 76.3989 100.854 76.3989 142.468 101.657L147.495 104.708L152.522 107.759C194.137 133.017 246.349 133.017 287.963 107.759L292.99 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M2 119.846L7.02717 116.795C48.6414 91.5371 100.854 91.5371 142.468 116.795L147.495 119.846L152.522 122.897C194.137 148.155 246.349 148.155 287.963 122.897L292.99 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 74.4309L298.698 71.3797C340.312 46.1221 392.524 46.1221 434.138 71.3797L439.165 74.4309L444.193 77.4822C485.807 102.74 538.019 102.74 579.633 77.4822L584.66 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 59.2925L298.698 56.2413C340.312 30.9837 392.524 30.9837 434.138 56.2413L439.165 59.2925L444.193 62.3437C485.807 87.6014 538.019 87.6014 579.633 62.3437L584.66 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 44.1538L298.698 41.1026C340.312 15.845 392.524 15.845 434.138 41.1026L439.165 44.1538L444.193 47.2051C485.807 72.4627 538.019 72.4627 579.633 47.2051L584.66 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 89.5696L298.698 86.5184C340.312 61.2608 392.524 61.2608 434.138 86.5184L439.165 89.5696L444.193 92.6208C485.807 117.878 538.019 117.878 579.633 92.6208L584.66 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 104.708L298.698 101.657C340.312 76.3989 392.524 76.3989 434.138 101.657L439.165 104.708L444.193 107.759C485.807 133.017 538.019 133.017 579.633 107.759L584.66 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M293.67 119.846L298.698 116.795C340.312 91.5371 392.524 91.5371 434.138 116.795L439.165 119.846L444.193 122.897C485.807 148.155 538.019 148.155 579.633 122.897L584.66 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 74.4309L590.367 71.3797C631.981 46.1221 684.193 46.1221 725.808 71.3797L730.835 74.4309L735.862 77.4822C777.476 102.74 829.689 102.74 871.303 77.4822L876.33 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 59.2925L590.367 56.2413C631.981 30.9837 684.193 30.9837 725.808 56.2413L730.835 59.2925L735.862 62.3437C777.476 87.6014 829.689 87.6014 871.303 62.3437L876.33 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 44.1538L590.367 41.1026C631.981 15.845 684.193 15.845 725.808 41.1026L730.835 44.1538L735.862 47.2051C777.476 72.4627 829.689 72.4627 871.303 47.2051L876.33 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 89.5696L590.367 86.5184C631.981 61.2608 684.193 61.2608 725.808 86.5184L730.835 89.5696L735.862 92.6208C777.476 117.878 829.689 117.878 871.303 92.6208L876.33 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 104.708L590.367 101.657C631.981 76.3989 684.193 76.3989 725.808 101.657L730.835 104.708L735.862 107.759C777.476 133.017 829.689 133.017 871.303 107.759L876.33 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M585.34 119.846L590.367 116.795C631.981 91.5371 684.193 91.5371 725.808 116.795L730.835 119.846L735.862 122.897C777.476 148.155 829.689 148.155 871.303 122.897L876.33 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 74.4309L882.037 71.3797C923.651 46.1221 975.863 46.1221 1017.48 71.3797L1022.5 74.4309L1027.53 77.4822C1069.15 102.74 1121.36 102.74 1162.97 77.4822L1168 74.4309"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 59.2925L882.037 56.2413C923.651 30.9837 975.863 30.9837 1017.48 56.2413L1022.5 59.2925L1027.53 62.3437C1069.15 87.6014 1121.36 87.6014 1162.97 62.3437L1168 59.2925"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 44.1538L882.037 41.1026C923.651 15.845 975.863 15.845 1017.48 41.1026L1022.5 44.1538L1027.53 47.2051C1069.15 72.4627 1121.36 72.4627 1162.97 47.2051L1168 44.1538"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 89.5696L882.037 86.5184C923.651 61.2608 975.863 61.2608 1017.48 86.5184L1022.5 89.5696L1027.53 92.6208C1069.15 117.878 1121.36 117.878 1162.97 92.6208L1168 89.5696"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 104.708L882.037 101.657C923.651 76.3989 975.863 76.3989 1017.48 101.657L1022.5 104.708L1027.53 107.759C1069.15 133.017 1121.36 133.017 1162.97 107.759L1168 104.708"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+          <path
+            d="M877.01 119.846L882.037 116.795C923.651 91.5371 975.863 91.5371 1017.48 116.795L1022.5 119.846L1027.53 122.897C1069.15 148.155 1121.36 148.155 1162.97 122.897L1168 119.846"
+            stroke="black" stroke-opacity="0.3" stroke-width="2.46923" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <div class="container">
+        <div class="text-2">
+          <div class="title-2">
+            <div id="red-rectangle"></div>
+            <h2>Simplify Inventory Management for Library Admins</h2>
+          </div>
+          <h3>
+            For library administrators, our platform streamlines inventory
+            management. Easily catalog, organize, and track library resources,
+            ensuring efficient library operations.
+          </h3>
+        </div>
+        <img src="{% static "images/about-page-assets/photo6.png" %}" alt="photo no.6" class="photo" />
+      </div>
+
+      <div class="container">
+        <img src="{% static "images/about-page-assets/photo7.png" %}" alt="photo no.7" class="photo" />
+        <div class="text-1">
+          <div class="title">
+            <div class="red-rectangle"></div>
+            <h2>
+              Keep Your Collection Current – Easily Update Available Books
+            </h2>
+          </div>
+          <h3>
+            Ensure your library's collection is always up-to-date. Our
+            platform simplifies the process of adding new books and removing
+            unavailable ones, keeping your library fresh and relevant.
+          </h3>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="text-2">
+          <div class="title-2">
+            <div id="red-rectangle"></div>
+            <h2>
+              Efficiently Track Pending Late Fees to Ensure Library Operations
+              Run Smoothly
+            </h2>
+          </div>
+          <h3>
+            Library administrators can efficiently manage late fees, ensuring
+            that library operations run smoothly. This feature helps maintain
+            financial stability and resources for the library's growth and
+            improvement.
+          </h3>
+        </div>
+        <img src="{% static "images/about-page-assets/photo8.png" %}" alt="photo no.8" class="photo" />
+      </div>
+    </div>
+
+    <div id="page4">
+      <div class="bluebox">
+        <h1 class="feedback-text">
+          "I love how OpenLib simplifies the process of finding and borrowing
+          books. It's a game change for our library."
+        </h1>
+        <div class="feedback-user">
+          <img src="{% static "images/about-page-assets/feedback-photo.jpg" %}" alt="user photo" class="feedback-photo" />
+          <span><a
+              href="https://unsplash.com/@alexanderhipp?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alexander
+              Hipp</a></span>
+        </div>
+      </div>
+
+      <div class="form">
+        <div class="triangle-above"></div>
+        <div class="triangle-below"></div>
+
+        <div class="form-content">
+          <h1 class="form-text-heading">Join the Openlib community today.</h1>
+          <h3 class="form-text">
+            “Since implementing Openlib, our library has become more organized
+            and accessible. It has made a significant impact on our students
+            learning experirence.” - Ian Rivera
+          </h3>
+          {% include 'maincontent/email_form_2.html' %}
+        </div>
+      </div>
+
+    </div>
+    <div id="page5">
+      <div class="footer-container-1">
+        <div class="container1">
+          <span>Discover.</span>
+          <span class="text-red">Learn.</span>
+          <span>Connect.</span>
+          <br />
+        </div>
+        <div class="icon-container">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-container-2">
+        <a href="#" class="email d-sm-none">
+          <i class="fa-regular fa-envelope"></i>
+          <span>XYZ@gmail.com</span>
+        </a>
+        <div class="credit-learn">
+          <a href="#"><span>CREDITS</span></a>
+          <a href="#"><span>LEARN MORE</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="{% static "js/about.js" %}" type="text/javascript" ></script>
+</body>
+
+</html>

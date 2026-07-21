@@ -1,0 +1,369 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenLib – Admin Dashboard</title>
+  <meta name="description" content="OpenLib administrator dashboard for managing books, users and records." />
+
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+</head>
+
+<body>
+  <!-- ── HEADER ── -->
+  <header>
+    <div id="nav">
+      <div id="navbar">
+        <div id="brand">
+          <span onclick="openNav()" style="cursor:pointer;">
+            <i class="bx bx-menu" style="font-size:1.6rem;color:#fff;"></i>
+          </span>
+          <a href="/home" id="logo">
+            <svg viewBox="0 0 75 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M46.919 6.25491L38.086 12.5244V32.6368C38.086 45.1758 38.1446 52.7344 38.2178 52.7051C38.3057 52.6905 41.9092 49.9219 46.2305 46.5821C50.5518 43.2422 54.6973 40.1221 55.4298 39.668C56.1622 39.2139 56.8799 38.6866 57.0264 38.5108C57.2608 38.2178 57.2755 37.1192 57.2755 20.0391V1.88967L56.9678 1.27444C56.6163 0.58596 56.1329 2.28882e-05 55.8985 2.28882e-05C55.8106 2.28882e-05 51.7676 2.81252 46.919 6.25491Z" fill="#FAFAFF" />
+              <path d="M9.05268 8.4229C7.20698 8.62798 6.63569 8.84771 6.0937 9.56548L5.78608 9.97564L5.74213 27.7295C5.71284 40.1075 5.74213 45.6446 5.85932 46.0254C5.96186 46.3624 6.21088 46.7286 6.5478 46.9776L7.07514 47.3878L11.7773 47.4756C16.4648 47.5635 16.4941 47.5635 18.9697 48.0909C24.7705 49.3213 27.6562 50.2442 31.6406 52.1485C34.1162 53.335 35.3906 53.9063 35.5371 53.9063C35.5664 53.9063 35.5957 44.7217 35.5957 33.501V13.0958L34.6875 12.9053C34.1894 12.8028 32.3437 12.2022 30.6005 11.5577C25.2392 9.60942 22.3828 8.877 18.457 8.4229C16.2451 8.15923 11.455 8.15923 9.05268 8.4229Z" fill="#FAFAFF" />
+              <path d="M59.8829 23.3789C59.8389 37.6758 59.8243 38.6279 59.5753 39.1845C59.1944 40.0342 58.6964 40.5029 57.0997 41.5429C55.254 42.7441 44.2823 51.0937 43.213 52.1045C43.0958 52.207 43.7256 51.9726 44.6046 51.5478C47.3438 50.2588 50.962 49.1748 56.3965 48.0176C58.4473 47.5781 58.6817 47.5488 63.2081 47.4756C67.8516 47.3877 67.8956 47.3877 68.3936 47.0361C69.3458 46.3623 69.2872 47.4609 69.2872 27.9345V10.1513L68.9503 9.66793C68.2471 8.61325 67.3243 8.40817 62.7393 8.24704L59.9268 8.15915L59.8829 23.3789Z" fill="#FAFAFF" />
+              <path d="M0.644531 13.3594C0.46875 13.4327 0.249023 13.667 0.161133 13.8575C0.0439453 14.1211 0 19.834 0 34.2188V54.2286L0.424805 54.6534L0.84961 55.0782L16.3623 55.0635L31.8604 55.0489L29.9561 54.1114C27.085 52.6905 23.7305 51.6505 18.3106 50.5079C16.2598 50.0684 16.0254 50.0391 11.4258 49.9659L6.66504 49.878L5.81543 49.4532C4.83399 48.9551 4.05762 48.1495 3.60352 47.1827L3.2959 46.5088L3.25195 29.8389L3.22266 13.1836L2.08008 13.1983C1.46484 13.1983 0.805664 13.2715 0.644531 13.3594Z" fill="#FAFAFF" />
+              <path d="M71.7481 29.8389L71.7042 46.5088L71.294 47.3438C70.8253 48.296 69.9757 49.1163 69.0089 49.5704C68.379 49.8487 68.0128 49.878 63.5743 49.9659C58.9454 50.0538 58.7549 50.0684 56.6163 50.5225C51.2403 51.6651 47.8858 52.7198 45.0147 54.126L43.1397 55.0489L58.6378 55.0635L74.1505 55.0782L74.5753 54.6534L75.0001 54.2286V34.2188C75.0001 19.878 74.9561 14.1211 74.8389 13.8721C74.6046 13.3594 74.1065 13.1836 72.876 13.1836H71.7774L71.7481 29.8389Z" fill="#FAFAFF" />
+            </svg>
+            <h1 id="logo-title-1">Open</h1>
+            <h1 id="logo-title-2">Lib</h1>
+          </a>
+        </div>
+
+        <div id="user">
+          <a href="">
+            <i class="bx bx-user-circle"></i>
+            <h1 class="username">Hello, Admin</h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SIDENAV ── -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#main" onclick="showSection('main')"><i class="bx bx-data"></i>Dashboard</a>
+    <a href="#add-book" onclick="showSection('add-book')"><i class="bx bx-book"></i>Manage Books</a>
+    <a href="#manage-user" onclick="showSection('manage-user')"><i class="bx bx-user-check"></i>Manage Users</a>
+    <a href="#issue-book" onclick="showSection('issue-book')"><i class="bx bx-bookmark-alt-plus"></i>Issue Book</a>
+    <a href="#return-book" onclick="showSection('return-book')"><i class="bxs bxs-bookmark-alt-minus"></i>Return Book</a>
+    <a href="#view-records" onclick="showSection('view-records')"><i class="bx bx-spreadsheet"></i>View Records</a>
+    <a href="{% url 'logout' %}" class="sidenav-logout"><i class="bx bx-log-out"></i>Logout</a>
+  </div>
+
+  <!-- ── DASHBOARD (main) ── -->
+  <div id="main" class="page-section">
+    <div class="page-title">
+      <h1>Dashboard Overview</h1>
+      <p class="page-subtitle">Welcome back, Admin! Here's what's happening in your library.</p>
+    </div>
+    <div id="container">
+      <!-- Book Table -->
+      <div class="left-container">
+        <div class="table-card">
+          <div class="table-card-header">
+            <h2 class="table-header">Book Catalog</h2>
+            <div class="search-bar">
+              <i class="bx bx-search"></i>
+              <input type="search" placeholder="Search by Title / Author" id="search" />
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table id="book-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Book Title</th>
+                  <th>Author</th>
+                  <th>Publication</th>
+                  <th>Genre</th>
+                  <th>ISBN</th>
+                  <th>Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="right-container">
+        <div class="book-no">
+          <div class="icon-container icon-container-1">
+            <i class="bx bx-book-reader"></i>
+          </div>
+          <div class="book-count">
+            <h5>Total Books</h5>
+            <h1>{{ total_books }}</h1>
+          </div>
+        </div>
+
+        <div class="book-no">
+          <div class="icon-container icon-container-2">
+            <i class="bx bx-user"></i>
+          </div>
+          <div class="book-count">
+            <h5>Total Users</h5>
+            <h1>{{ total_users }}</h1>
+          </div>
+        </div>
+
+        <div class="book-no">
+          <div class="icon-container icon-container-3">
+            <i class="bx bx-book-add"></i>
+          </div>
+          <div class="book-count">
+            <h5>Issued Books</h5>
+            <h1>{{ issued_books }}</h1>
+          </div>
+        </div>
+
+        <div class="book-no">
+          <div class="icon-container icon-container-4">
+            <i class="bx bx-user-minus"></i>
+          </div>
+          <div class="book-count">
+            <h5>Overdue</h5>
+            <h1>{{ overdue_borrows }}</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MANAGE BOOKS ── -->
+  <div id="add-book" class="page-section" style="display:none;">
+    <div class="page-title">
+      <h1>Manage Books</h1>
+      <p class="page-subtitle">Add or remove books from the library catalog.</p>
+    </div>
+    <div class="manage-book-container">
+      <!-- Add Book -->
+      <div class="form-card">
+        <h2 class="form-card-title"><i class="bx bx-plus-circle"></i> Add New Book</h2>
+        <form id="add-book-form">
+          <div class="form-group">
+            <label for="image">Cover Image</label>
+            <input type="file" id="image" name="image" accept="image/*" />
+          </div>
+          <div class="form-group">
+            <label for="title">Title <span class="required">*</span></label>
+            <input type="text" id="title" name="title" placeholder="Enter book title" required />
+          </div>
+          <div class="form-group">
+            <label for="author">Author <span class="required">*</span></label>
+            <input type="text" id="author" name="author" placeholder="Enter author name" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="year">Publication Year <span class="required">*</span></label>
+              <input type="number" id="year" name="year" placeholder="e.g. 2023" required />
+            </div>
+            <div class="form-group">
+              <label for="genre">Genre <span class="required">*</span></label>
+              <input type="text" id="genre" name="genre" placeholder="e.g. Fiction" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ISBN">ISBN <span class="required">*</span></label>
+              <input type="number" id="ISBN" name="ISBN" placeholder="13-digit ISBN" required />
+            </div>
+            <div class="form-group">
+              <label for="qty">Quantity <span class="required">*</span></label>
+              <input type="number" id="qty" name="qty" placeholder="e.g. 3" min="1" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary"><i class="bx bx-plus"></i> Add Book</button>
+        </form>
+      </div>
+
+      <!-- Remove Book -->
+      <div class="form-card form-card-danger">
+        <h2 class="form-card-title"><i class="bx bx-trash"></i> Remove Book</h2>
+        <form id="remove-book-form" onsubmit="return confirm('Are you sure you want to remove this book?');">
+          <div class="form-group">
+            <label for="removeISBN">ISBN <span class="required">*</span></label>
+            <input type="number" id="removeISBN" name="ISBN" placeholder="Enter ISBN to remove" required />
+          </div>
+          <button type="submit" class="btn-danger"><i class="bx bx-trash"></i> Remove Book</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MANAGE USERS ── -->
+  <div id="manage-user" class="page-section" style="display:none;">
+    <div class="page-title">
+      <h1>Manage Users</h1>
+      <p class="page-subtitle">View and manage all registered library members.</p>
+    </div>
+    <div class="table-card">
+      <div class="table-card-header">
+        <h2 class="table-header">All Users</h2>
+        <div class="search-bar">
+          <i class="bx bx-search"></i>
+          <input type="search" placeholder="Search by username or email" />
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="user-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Phone No.</th>
+              <th>Email</th>
+              <th>Books Borrowed</th>
+              <th>Pending Fees</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ISSUE BOOK ── -->
+  <div id="issue-book" class="page-section" style="display:none;">
+    <div class="page-title">
+      <h1>Issue Book</h1>
+      <p class="page-subtitle">Assign a book to a library member.</p>
+    </div>
+    <div class="single-form-wrapper">
+      <div class="form-card">
+        <h2 class="form-card-title"><i class="bx bx-bookmark-alt-plus"></i> Issue Book</h2>
+        <form id="issue-form" action="" method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="memberID">Member ID <span class="required">*</span></label>
+              <input type="text" id="memberID" name="memberID" placeholder="Enter member ID" required />
+            </div>
+            <div class="form-group">
+              <label for="memberName">Member Name <span class="required">*</span></label>
+              <input type="text" id="memberName" name="memberName" placeholder="Enter member name" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookISBN">Book ISBN <span class="required">*</span></label>
+              <input type="text" id="bookISBN" name="bookISBN" placeholder="Enter book ISBN" required />
+            </div>
+            <div class="form-group">
+              <label for="issueDate">Issue Date <span class="required">*</span></label>
+              <input type="date" id="issueDate" name="issueDate" required />
+            </div>
+          </div>
+          <button type="submit" class="btn-primary"><i class="bx bx-check"></i> Issue Book</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RETURN BOOK ── -->
+  <div id="return-book" class="page-section" style="display:none;">
+    <div class="page-title">
+      <h1>Return Book</h1>
+      <p class="page-subtitle">Process a book return and calculate any fees.</p>
+    </div>
+    <div class="single-form-wrapper">
+      <div class="form-card">
+        <h2 class="form-card-title"><i class="bx bxs-bookmark-alt-minus"></i> Return Book</h2>
+        <form id="return-form" action="" method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ret-memberID">Member ID <span class="required">*</span></label>
+              <input type="text" id="ret-memberID" name="memberID" placeholder="Enter member ID" required />
+            </div>
+            <div class="form-group">
+              <label for="ret-memberName">Member Name <span class="required">*</span></label>
+              <input type="text" id="ret-memberName" name="memberName" placeholder="Enter member name" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ret-bookISBN">Book ISBN <span class="required">*</span></label>
+              <input type="text" id="ret-bookISBN" name="bookISBN" placeholder="Enter book ISBN" required />
+            </div>
+            <div class="form-group">
+              <label for="returnDate">Return Date <span class="required">*</span></label>
+              <input type="date" id="returnDate" name="returnDate" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="daysElapsed">Days Elapsed <span class="required">*</span></label>
+            <input type="number" id="daysElapsed" name="daysElapsed" placeholder="Auto-calculated or enter manually" required />
+          </div>
+          <button type="submit" class="btn-primary"><i class="bx bx-check"></i> Process Return</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VIEW RECORDS ── -->
+  <div id="view-records" class="page-section" style="display:none;">
+    <div class="page-title">
+      <h1>Borrow Records</h1>
+      <p class="page-subtitle">Complete history of all book transactions.</p>
+    </div>
+    <div class="table-card">
+      <div class="table-card-header">
+        <h2 class="table-header">Transaction History</h2>
+        <div class="search-bar">
+          <i class="bx bx-search"></i>
+          <input type="search" placeholder="Search records..." />
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table id="records-table">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Issued Date</th>
+              <th>Return Date</th>
+              <th>ISBN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script>
+    function openNav() { document.getElementById("mySidenav").style.width = "280px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
+    function showSection(id) {
+      const sections = ['main','add-book','manage-user','issue-book','return-book','view-records'];
+      sections.forEach(s => {
+        const el = document.getElementById(s);
+        if (el) el.style.display = (s === id) ? 'block' : 'none';
+      });
+      closeNav();
+    }
+
+    // Handle hash-based navigation
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) showSection(hash);
+    });
+  </script>
+</body>
+
+</html>
