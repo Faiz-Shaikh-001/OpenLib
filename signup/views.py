@@ -1,86 +1,150 @@
-from django.contrib.auth import authenticate, login, logout as auth_logout
-from django.shortcuts import render, redirect
-# from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as auth_logout
+from django.shortcuts import redirect, render
+
 from .forms import LoginForm, SignupForm
 from .models import CustomUser
 
 
+def is_admin(user):
+    """
+    A Django superuser is always treated as an administrator.
+
+    Application users can also be explicitly assigned the `admin` role
+    through a trusted administrative process.
+    """
+    return user.is_superuser or getattr(user, "role", "user") == "admin"
+
+
+def redirect_authenticated_user(user):
+    if is_admin(user):
+        return redirect("admin-page")
+
+    return redirect("user-page")
+
+
 def home(request):
-    login_form = LoginForm()
-    signup_form = SignupForm()
-    return render(request, 'signup/index.html', {'login_form': login_form, 'signup_form': signup_form})
+    if request.user.is_authenticated:
+        return redirect_authenticated_user(request.user)
+
+    return render(
+        request,
+        "signup/index.html",
+        {
+            "login_form": LoginForm(),
+            "signup_form": SignupForm(),
+        },
+    )
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            role = form.cleaned_data['role']
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            confirm_password = form.cleaned_data['confirm_password']
+    if request.user.is_authenticated:
+        return redirect_authenticated_user(request.user)
 
-            if password != confirm_password:
-                messages.error(request, "Passwords do not match")
-                return render(request, 'signup/index.html', {'signup_form': form, 'login_form': LoginForm()})
-            
-            existing_user = CustomUser.objects.filter(email=email).first()
-            
-            if existing_user is not None:
-                if existing_user.username == username:
-                    messages.info(request, 'Username already exists')
-                elif existing_user.role == role:
-                    messages.error(request, 'User with the same email and role already exists')
-                else:
-                    myuser = CustomUser.objects.create_user(username, email, password)
-                    myuser.role = role
-                    myuser.save()
-                    messages.success(request, 'Your account has been successfully created.')
-                    return redirect('signin')
-            else:
-                myuser = CustomUser.objects.create_user(username, email, password)
-                myuser.role = role
-                myuser.save()
-                messages.success(request, 'Your account has been successfully created.')
-                return redirect('signin')
-        else: 
-            return render(request, 'signup/index.html', {'signup_form': form, 'login_form': LoginForm()})
-    else:
-        form = SignupForm()
-    
-    return render(request, 'signup/index.html', {'signup_form': form, 'login_form': LoginForm()})
+    if request.method != "POST":
+        return render(
+            request,
+            "signup/index.html",
+            {
+                "login_form": LoginForm(),
+                "signup_form": SignupForm(),
+            },
+        )
+
+    form = SignupForm(request.POST)
+
+    if not form.is_valid():
+        return render(
+            request,
+            "signup/index.html",
+            {
+                "login_form": LoginForm(),
+                "signup_form": form,
+            },
+        )
+
+    username = form.cleaned_data["username"]
+    email = form.cleaned_data["email"]
+    password = form.cleaned_data["password"]
+
+    # Public registration can ONLY create normal users.
+    CustomUser.objects.create_user(
+        username=username,
+        email=email,
+        password=password,
+        role="user",
+    )
+
+    messages.success(
+        request,
+        "Your account has been successfully created. You can now sign in.",
+    )
+
+    return redirect("signin")
 
 
 def signin(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+    if request.user.is_authenticated:
+        return redirect_authenticated_user(request.user)
 
-            user = authenticate(request, username=username, password=password)
+    if request.method != "POST":
+        return render(
+            request,
+            "signup/index.html",
+            {
+                "login_form": LoginForm(),
+                "signup_form": SignupForm(),
+            },
+        )
 
-            if user is not None:
-                login(request, user)
+    form = LoginForm(request.POST)
 
-                is_super = getattr(user, 'is_superuser', False)
-                user_role = getattr(user, 'role', 'admin' if is_super else 'user')
+    if not form.is_valid():
+        return render(
+            request,
+            "signup/index.html",
+            {
+                "login_form": form,
+                "signup_form": SignupForm(),
+            },
+        )
 
-                if user_role == 'admin':
-                    return redirect('admin-page')
-                elif user_role == 'user':
-                    return redirect('user-page')
-            else:
-                messages.error(request, "Incorrect username or password")
-        return render(request, 'signup/index.html', {'login_form': form, 'signup_form': SignupForm()})
+    username = form.cleaned_data["username"]
+    password = form.cleaned_data["password"]
 
-    return render(request, 'signup/index.html', {'login_form': LoginForm(), 'signup_form': SignupForm()})
+    user = authenticate(
+        request,
+        username=username,
+        password=password,
+    )
+
+    if user is None:
+        messages.error(
+            request,
+            "Incorrect username or password.",
+        )
+
+        return render(
+            request,
+            "signup/index.html",
+            {
+                "login_form": form,
+                "signup_form": SignupForm(),
+            },
+        )
+
+    login(request, user)
+
+    return redirect_authenticated_user(user)
 
 
 def logout(request):
     auth_logout(request)
-    messages.success(request, "You have been logged out successfully.")
-    return redirect("home")
 
+    messages.success(
+        request,
+        "You have been logged out successfully.",
+    )
+
+    return redirect("home")
