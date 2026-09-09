@@ -3,20 +3,16 @@ from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.db.models import Q
+from django.db import IntegrityError, transaction
+from django.db.models import F, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 from maincontent.models import Book, BorrowRecord
 
 
 def check_role(request):
-    """
-    Django superusers are always administrators.
-
-    Normal users use the application-level role stored
-    on CustomUser.
-    """
     if request.user.is_superuser:
         return "admin"
 
@@ -37,13 +33,21 @@ def user_page(request):
         "",
     ).strip()
 
+    books = Book.objects.select_related(
+        "category"
+    ).all()
+
     if query:
-        books = Book.objects.filter(
+        books = books.filter(
             Q(title__icontains=query)
             | Q(author__icontains=query)
+            | Q(isbn__icontains=query)
+            | Q(category__name__icontains=query)
         )
-    else:
-        books = Book.objects.all()
+
+    books = books.order_by(
+        "title",
+    )
 
     return render(
         request,
@@ -60,9 +64,12 @@ def user_profile(request):
     if check_role(request) != "user":
         raise PermissionDenied
 
-    borrowed_records = BorrowRecord.objects.filter(
-        user=request.user
-    ).order_by("-borrow_date")
+    borrowed_records = (
+        BorrowRecord.objects
+        .filter(user=request.user)
+        .select_related("book")
+        .order_by("-borrow_date")
+    )
 
     return render(
         request,
@@ -79,117 +86,166 @@ def book_detail(request, book_id):
         raise PermissionDenied
 
     book = get_object_or_404(
-        Book,
+        Book.objects.select_related("category"),
         id=book_id,
     )
+
+    active_borrow = BorrowRecord.objects.filter(
+        user=request.user,
+        book=book,
+        status="borrowed",
+    ).first()
 
     return render(
         request,
         "userpage/book-detail.html",
         {
             "book": book,
+            "active_borrow": active_borrow,
         },
     )
 
 
 @login_required
+@require_POST
 def borrow_book(request, book_id):
     if check_role(request) != "user":
         raise PermissionDenied
 
-    book = get_object_or_404(
-        Book,
-        id=book_id,
-    )
+    try:
+        with transaction.atomic():
+            existing_borrow = BorrowRecord.objects.filter(
+                user=request.user,
+                book_id=book_id,
+                status="borrowed",
+            ).exists()
 
-    if book.available_copies < 1:
-        messages.error(
-            request,
-            f"Sorry, '{book.title}' is currently out of stock.",
-        )
+            if existing_borrow:
+                messages.warning(
+                    request,
+                    "You have already borrowed this book.",
+                )
 
-        return redirect(
-            "book-detail",
-            book_id=book.id,
-        )
+                return redirect(
+                    "book-detail",
+                    book_id=book_id,
+                )
 
-    existing_borrow = BorrowRecord.objects.filter(
-        user=request.user,
-        book=book,
-        status="borrowed",
-    ).first()
+            # Conditional UPDATE prevents stock from dropping below zero.
+            updated_rows = Book.objects.filter(
+                id=book_id,
+                available_copies__gt=0,
+            ).update(
+                available_copies=F("available_copies") - 1
+            )
 
-    if existing_borrow:
+            if updated_rows == 0:
+                if not Book.objects.filter(id=book_id).exists():
+                    messages.error(
+                        request,
+                        "The requested book does not exist.",
+                    )
+
+                    return redirect("user-page")
+
+                messages.error(
+                    request,
+                    "This book is currently unavailable.",
+                )
+
+                return redirect(
+                    "book-detail",
+                    book_id=book_id,
+                )
+
+            due_date = (
+                timezone.now().date()
+                + timedelta(days=14)
+            )
+
+            BorrowRecord.objects.create(
+                user=request.user,
+                book_id=book_id,
+                due_date=due_date,
+                status="borrowed",
+            )
+
+    except IntegrityError:
+        # Protects against simultaneous duplicate borrow attempts.
         messages.warning(
             request,
-            f"You have already borrowed '{book.title}'.",
+            "You already have an active borrow for this book.",
         )
 
         return redirect(
             "book-detail",
-            book_id=book.id,
+            book_id=book_id,
         )
 
-    due_date = (
-        timezone.now().date()
-        + timedelta(days=14)
+    book = Book.objects.get(
+        id=book_id,
     )
-
-    BorrowRecord.objects.create(
-        user=request.user,
-        book=book,
-        due_date=due_date,
-        status="borrowed",
-    )
-
-    book.available_copies -= 1
-    book.save()
 
     messages.success(
         request,
         (
-            f"Successfully borrowed '{book.title}'! "
+            f"Successfully borrowed '{book.title}'. "
             f"Due date: {due_date}."
         ),
     )
 
     return redirect(
         "book-detail",
-        book_id=book.id,
+        book_id=book_id,
     )
 
 
 @login_required
+@require_POST
 def return_book(request, record_id):
     if check_role(request) != "user":
         raise PermissionDenied
 
-    record = get_object_or_404(
-        BorrowRecord,
-        id=record_id,
-        user=request.user,
-    )
-
-    if record.status == "returned":
-        messages.error(
-            request,
-            "This book has already been returned.",
+    with transaction.atomic():
+        record = get_object_or_404(
+            BorrowRecord.objects.select_for_update(),
+            id=record_id,
+            user=request.user,
         )
 
-        return redirect("user-profile")
+        if record.status == "returned":
+            messages.warning(
+                request,
+                "This book has already been returned.",
+            )
 
-    record.status = "returned"
-    record.return_date = timezone.now().date()
-    record.save()
+            return redirect(
+                "user-profile",
+            )
 
-    book = record.book
+        record.status = "returned"
+        record.return_date = timezone.now().date()
 
-    book.available_copies += 1
-    book.save()
+        record.save(
+            update_fields=[
+                "status",
+                "return_date",
+            ]
+        )
+
+        Book.objects.filter(
+            id=record.book_id,
+        ).update(
+            available_copies=F("available_copies") + 1
+        )
+
+        book_title = record.book.title
 
     messages.success(
         request,
-        f"Successfully returned '{book.title}'. Thank you!",
+        f"Successfully returned '{book_title}'.",
     )
 
-    return redirect("user-profile")
+    return redirect(
+        "user-profile",
+    )
