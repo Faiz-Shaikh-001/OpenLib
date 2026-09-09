@@ -5,321 +5,234 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenLib – Library Catalog</title>
-    <meta name="description" content="Browse and search the OpenLib library catalog." />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
 
-    <link rel="stylesheet" href="{% static 'css/user.css' %}" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <title>OpenLib – Library Catalog</title>
+
+    <meta
+        name="description"
+        content="Browse and search the OpenLib library catalog."
+    />
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/user.css' %}"
+    />
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
 </head>
 
 <body>
-    <header>
-        <div id="nav">
-            <div id="navbar">
-                <div id="brand">
-                    <span onclick="openNav()" style="font-size:1.5rem;cursor:pointer;color:#fff;">
-                        <i class="bx bx-menu"></i>
+
+<header>
+    <div id="nav">
+        <div id="navbar">
+
+            <div id="brand">
+                <a
+                    href="{% url 'user-page' %}"
+                    id="logo"
+                >
+                    <h1 id="logo-title-1">Open</h1>
+                    <h1 id="logo-title-2">Lib</h1>
+                </a>
+            </div>
+
+            <div id="user">
+                <a href="{% url 'user-profile' %}">
+                    <i class="bx bx-user-circle"></i>
+
+                    <span class="username">
+                        Hello, {{ request.user.username }}
                     </span>
-                    <a href="/home" id="logo">
-                        <svg viewBox="0 0 75 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M46.919 6.25491L38.086 12.5244V32.6368C38.086 45.1758 38.1446 52.7344 38.2178 52.7051C38.3057 52.6905 41.9092 49.9219 46.2305 46.5821C50.5518 43.2422 54.6973 40.1221 55.4298 39.668C56.1622 39.2139 56.8799 38.6866 57.0264 38.5108C57.2608 38.2178 57.2755 37.1192 57.2755 20.0391V1.88967L56.9678 1.27444C56.6163 0.58596 56.1329 2.28882e-05 55.8985 2.28882e-05C55.8106 2.28882e-05 51.7676 2.81252 46.919 6.25491Z" fill="#FAFAFF" />
-                            <path d="M9.05268 8.4229C7.20698 8.62798 6.63569 8.84771 6.0937 9.56548L5.78608 9.97564L5.74213 27.7295C5.71284 40.1075 5.74213 45.6446 5.85932 46.0254C5.96186 46.3624 6.21088 46.7286 6.5478 46.9776L7.07514 47.3878L11.7773 47.4756C16.4648 47.5635 16.4941 47.5635 18.9697 48.0909C24.7705 49.3213 27.6562 50.2442 31.6406 52.1485C34.1162 53.335 35.3906 53.9063 35.5371 53.9063C35.5664 53.9063 35.5957 44.7217 35.5957 33.501V13.0958L34.6875 12.9053C34.1894 12.8028 32.3437 12.2022 30.6005 11.5577C25.2392 9.60942 22.3828 8.877 18.457 8.4229C16.2451 8.15923 11.455 8.15923 9.05268 8.4229Z" fill="#FAFAFF" />
-                            <path d="M59.8829 23.3789C59.8389 37.6758 59.8243 38.6279 59.5753 39.1845C59.1944 40.0342 58.6964 40.5029 57.0997 41.5429C55.254 42.7441 44.2823 51.0937 43.213 52.1045C43.0958 52.207 43.7256 51.9726 44.6046 51.5478C47.3438 50.2588 50.962 49.1748 56.3965 48.0176C58.4473 47.5781 58.6817 47.5488 63.2081 47.4756C67.8516 47.3877 67.8956 47.3877 68.3936 47.0361C69.3458 46.3623 69.2872 47.4609 69.2872 27.9345V10.1513L68.9503 9.66793C68.2471 8.61325 67.3243 8.40817 62.7393 8.24704L59.9268 8.15915L59.8829 23.3789Z" fill="#FAFAFF" />
-                            <path d="M0.644531 13.3594C0.46875 13.4327 0.249023 13.667 0.161133 13.8575C0.0439453 14.1211 0 19.834 0 34.2188V54.2286L0.424805 54.6534L0.84961 55.0782L16.3623 55.0635L31.8604 55.0489L29.9561 54.1114C27.085 52.6905 23.7305 51.6505 18.3106 50.5079C16.2598 50.0684 16.0254 50.0391 11.4258 49.9659L6.66504 49.878L5.81543 49.4532C4.83399 48.9551 4.05762 48.1495 3.60352 47.1827L3.2959 46.5088L3.25195 29.8389L3.22266 13.1836L2.08008 13.1983C1.46484 13.1983 0.805664 13.2715 0.644531 13.3594Z" fill="#FAFAFF" />
-                            <path d="M71.7481 29.8389L71.7042 46.5088L71.294 47.3438C70.8253 48.296 69.9757 49.1163 69.0089 49.5704C68.379 49.8487 68.0128 49.878 63.5743 49.9659C58.9454 50.0538 58.7549 50.0684 56.6163 50.5225C51.2403 51.6651 47.8858 52.7198 45.0147 54.126L43.1397 55.0489L58.6378 55.0635L74.1505 55.0782L74.5753 54.6534L75.0001 54.2286V34.2188C75.0001 19.878 74.9561 14.1211 74.8389 13.8721C74.6046 13.3594 74.1065 13.1836 72.876 13.1836H71.7774L71.7481 29.8389Z" fill="#FAFAFF" />
-                        </svg>
-                        <h1 id="logo-title-1">Open</h1>
-                        <h1 id="logo-title-2">Lib</h1>
-                    </a>
-                </div>
-
-                <div id="user">
-                    <a href="profile">
-                        <i class="bx bx-user-circle"></i>
-                        <h1 class="username">Hello, {{ username|default:"User" }}</h1>
-                    </a>
-                </div>
+                </a>
             </div>
-        </div>
-    </header>
 
-    <!-- Side Navigation -->
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#main"><i class="bx bx-home"></i>Home</a>
-        <a href="profile"><i class="bx bx-user-circle"></i>Profile</a>
-        <a href="{% url 'logout' %}"><i class="bx bx-log-out"></i>Logout</a>
+        </div>
     </div>
+</header>
 
-    <div id="main">
-        <!-- Search Bar -->
-        <div class="search-section">
-            <form method="GET" action="{% url 'user-page' %}" class="search-form">
-                <i class="bx bx-search" style="color:#64748b;font-size:1.2rem;"></i>
-                <input type="search" name="search" value="{{ search_query }}" placeholder="Search by Title / Author" />
-                <button type="submit"><i class="bx bx-search"></i></button>
-            </form>
+
+<main id="main">
+
+    <!-- Search -->
+    <section class="search-section">
+
+        <form
+            method="GET"
+            action="{% url 'user-page' %}"
+            class="search-form"
+        >
+
+            <i class="bx bx-search"></i>
+
+            <input
+                type="search"
+                name="search"
+                value="{{ search_query }}"
+                placeholder="Search by title, author, ISBN, or category"
+            />
+
+            <button type="submit">
+                Search
+            </button>
+
+            {% if search_query %}
+                <a href="{% url 'user-page' %}">
+                    Clear
+                </a>
+            {% endif %}
+
+        </form>
+
+    </section>
+
+
+    <!-- Catalog -->
+    <section class="shelf-section">
+
+        <div class="shelf-header">
+
+            <h2 class="category-name">
+                {% if search_query %}
+                    Search Results
+                {% else %}
+                    Library Catalog
+                {% endif %}
+            </h2>
+
         </div>
 
-        <!-- Hero Carousel -->
-        <div class="carousel-container">
-            <div class="mySlides fade">
-                <img src="{% static 'images/user-page-assets/photo1.jpg' %}" alt="Library collection" />
-                <div class="carousel-caption">Explore thousands of titles</div>
-            </div>
-            <div class="mySlides fade">
-                <img src="{% static 'images/user-page-assets/photo2.jpg' %}" alt="New arrivals" />
-                <div class="carousel-caption">Discover new arrivals every week</div>
-            </div>
-            <div class="mySlides fade">
-                <img src="{% static 'images/user-page-assets/photo3.jpg' %}" alt="Reading room" />
-                <div class="carousel-caption">Reserve books from anywhere</div>
-            </div>
 
-            <button class="carousel-btn carousel-prev" onclick="plusSlides(-1)">&#9664;</button>
-            <button class="carousel-btn carousel-next" onclick="plusSlides(1)">&#9654;</button>
+        {% if books %}
 
-            <div class="carousel-dots">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
-        </div>
+            <div class="book-container">
 
-        <!-- Book Shelf: Category 1 -->
-        <section class="shelf-section">
-            <div class="shelf-header">
-                <h2 class="category-name">Fiction</h2>
-                <div class="shelf-nav">
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer1', 'prev')">&#9664;</button>
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer1', 'next')">&#9654;</button>
-                </div>
-            </div>
-            <div class="book-container" id="bookContainer1">
                 <div class="book-grid">
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=bYT8hyBTSNwC&printsec=frontcover&img=1&zoom=1&edge=curl" alt="Book 1" />
-                        </div>
-                        <h3 class="book-title">The Great Gatsby</h3>
-                        <p class="book-author">F. Scott Fitzgerald</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=2WtMPwAACAAJ&printsec=frontcover&img=1&zoom=1" alt="Book 2" />
-                        </div>
-                        <h3 class="book-title">To Kill a Mockingbird</h3>
-                        <p class="book-author">Harper Lee</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=yXZuAAAAMAAJ&printsec=frontcover&img=1&zoom=1" alt="Book 3" />
-                        </div>
-                        <h3 class="book-title">1984</h3>
-                        <p class="book-author">George Orwell</p>
-                        <div class="book-meta">
-                            <span class="badge badge-unavailable">Checked Out</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=GNSmDwAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 4" />
-                        </div>
-                        <h3 class="book-title">Brave New World</h3>
-                        <p class="book-author">Aldous Huxley</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=_JJ2DwAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 5" />
-                        </div>
-                        <h3 class="book-title">The Catcher in the Rye</h3>
-                        <p class="book-author">J.D. Salinger</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
+
+                    {% for book in books %}
+
+                        <a
+                            href="{% url 'book-detail' book.id %}"
+                            class="book"
+                        >
+
+                            <div class="book-image">
+
+                                <div
+                                    style="
+                                        width:100%;
+                                        min-height:180px;
+                                        display:flex;
+                                        align-items:center;
+                                        justify-content:center;
+                                        background:#e2e8f0;
+                                        font-size:4rem;
+                                    "
+                                >
+                                    <i class="bx bx-book"></i>
+                                </div>
+
+                            </div>
+
+
+                            <h3 class="book-title">
+                                {{ book.title }}
+                            </h3>
+
+
+                            <p class="book-author">
+                                {{ book.author }}
+                            </p>
+
+
+                            {% if book.category %}
+
+                                <p>
+                                    {{ book.category.name }}
+                                </p>
+
+                            {% endif %}
+
+
+                            <div class="book-meta">
+
+                                {% if book.available_copies > 0 %}
+
+                                    <span class="badge badge-available">
+                                        {{ book.available_copies }}
+                                        available
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge badge-unavailable">
+                                        Unavailable
+                                    </span>
+
+                                {% endif %}
+
+                                <span class="btn-detail">
+                                    Details
+                                </span>
+
+                            </div>
+
+                        </a>
+
+                    {% endfor %}
+
                 </div>
+
             </div>
-        </section>
 
-        <!-- Book Shelf: Category 2 -->
-        <section class="shelf-section">
-            <div class="shelf-header">
-                <h2 class="category-name">Science & Technology</h2>
-                <div class="shelf-nav">
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer2', 'prev')">&#9664;</button>
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer2', 'next')">&#9654;</button>
-                </div>
+        {% else %}
+
+            <div class="empty-state">
+
+                <i class="bx bx-search-alt"></i>
+
+                {% if search_query %}
+                    No books matched "{{ search_query }}".
+                {% else %}
+                    No books have been added yet.
+                {% endif %}
+
             </div>
-            <div class="book-container" id="bookContainer2">
-                <div class="book-grid">
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=d2ZQAAAAMAAJ&printsec=frontcover&img=1&zoom=1" alt="Book 1" />
-                        </div>
-                        <h3 class="book-title">A Brief History of Time</h3>
-                        <p class="book-author">Stephen Hawking</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=wg5FEAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 2" />
-                        </div>
-                        <h3 class="book-title">The Code Book</h3>
-                        <p class="book-author">Simon Singh</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=KdlnrgEACAAJ&printsec=frontcover&img=1&zoom=1" alt="Book 3" />
-                        </div>
-                        <h3 class="book-title">The Selfish Gene</h3>
-                        <p class="book-author">Richard Dawkins</p>
-                        <div class="book-meta">
-                            <span class="badge badge-unavailable">Checked Out</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=Gpe1BAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 4" />
-                        </div>
-                        <h3 class="book-title">The Innovators</h3>
-                        <p class="book-author">Walter Isaacson</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=aHKTEAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 5" />
-                        </div>
-                        <h3 class="book-title">Cosmos</h3>
-                        <p class="book-author">Carl Sagan</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
 
-        <!-- Book Shelf: Category 3 -->
-        <section class="shelf-section">
-            <div class="shelf-header">
-                <h2 class="category-name">History & Philosophy</h2>
-                <div class="shelf-nav">
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer3', 'prev')">&#9664;</button>
-                    <button class="arrow-btn" onclick="scrollBooks('bookContainer3', 'next')">&#9654;</button>
-                </div>
-            </div>
-            <div class="book-container" id="bookContainer3">
-                <div class="book-grid">
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=1EiJAwAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 1" />
-                        </div>
-                        <h3 class="book-title">Sapiens</h3>
-                        <p class="book-author">Yuval Noah Harari</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=gbn3DwAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 2" />
-                        </div>
-                        <h3 class="book-title">Meditations</h3>
-                        <p class="book-author">Marcus Aurelius</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=m_YSAAAAYAAJ&printsec=frontcover&img=1&zoom=1" alt="Book 3" />
-                        </div>
-                        <h3 class="book-title">The Republic</h3>
-                        <p class="book-author">Plato</p>
-                        <div class="book-meta">
-                            <span class="badge badge-available">Available</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                    <a href="bookdetail" class="book">
-                        <div class="book-image">
-                            <img src="https://books.google.co.in/books/content?id=x1b_EAAAQBAJ&printsec=frontcover&img=1&zoom=1" alt="Book 4" />
-                        </div>
-                        <h3 class="book-title">Guns, Germs, and Steel</h3>
-                        <p class="book-author">Jared Diamond</p>
-                        <div class="book-meta">
-                            <span class="badge badge-unavailable">Checked Out</span>
-                            <span class="btn-detail">Details</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
+        {% endif %}
 
-    <script>
-        // Carousel
-        let slideIndex = 1;
-        showSlides(slideIndex);
+    </section>
 
-        function plusSlides(n) { showSlides(slideIndex += n); }
-        function currentSlide(n) { showSlides(slideIndex = n); }
 
-        function showSlides(n) {
-            const slides = document.getElementsByClassName("mySlides");
-            const dots = document.getElementsByClassName("dot");
-            if (n > slides.length) slideIndex = 1;
-            if (n < 1) slideIndex = slides.length;
-            for (let i = 0; i < slides.length; i++) slides[i].style.display = "none";
-            for (let i = 0; i < dots.length; i++) dots[i].classList.remove("active");
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].classList.add("active");
-        }
+    <section
+        style="
+            margin-top:2rem;
+            display:flex;
+            gap:1rem;
+        "
+    >
 
-        // Auto-advance carousel
-        setInterval(() => plusSlides(1), 5000);
+        <a href="{% url 'user-profile' %}">
+            My Borrowed Books
+        </a>
 
-        // Sidenav
-        function openNav() { document.getElementById("mySidenav").style.width = "280px"; }
-        function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+        <a href="{% url 'logout' %}">
+            Logout
+        </a>
 
-        // Book container scroll
-        function scrollBooks(containerId, direction) {
-            const container = document.getElementById(containerId);
-            const amount = 300;
-            container.scrollBy({ left: direction === 'next' ? amount : -amount, behavior: 'smooth' });
-        }
-    </script>
+    </section>
+
+</main>
+
+
+<script src="{% static 'js/user-page.js' %}"></script>
+
 </body>
-
 </html>
